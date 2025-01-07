@@ -26,10 +26,16 @@ This tutorial outlines the implementation of on-premises Active Directory within
 </p>
 <p>
 Navigate to the Microsoft Azure portal and sign in with your credentials.
+
 In the Azure menu, select Resource groups or search for it in the search bar.
+
 Click + Create to start creating a new resource group.
+
 Name the resource group Active-Directory-Lab. Ensure that the name is typed exactly as shown for consistency.
+
 Select the appropriate Subscription and Region for your lab setup.
+
+
 Click Review + Create to review the settings.
 Once the validation passes, click Create to finalize the resource group.
 </p>
@@ -58,17 +64,27 @@ Once the validation passes, click Create to finalize the virtual network.
 </p>
 <p>
 In the Microsoft Azure portal, navigate to the Search bar and type Virtual Machines. Select Virtual Machines from the search results.
+
 Click + Create to start creating a new virtual machine.
+
 Under the Basics tab:
 For the Resource Group, select Active-Directory-Lab (the resource group created in Step 1).
+
 Set the Virtual Machine Name to dc-1.
+
 For the Image, select Windows Server 2022.
+
 For the Size, choose any configuration with at least 2 vCPUs or higher based on your requirements.
+
 Set your Username and Password for accessing the virtual machine. Ensure you remember these credentials.
+
 Check the box to confirm the licensing agreement.
+
 Click Next through the subsequent configuration tabs until you reach the Networking tab.
+
 In the Networking tab:
 Ensure the virtual machine is connected to the virtual network Active-Directory-Vnet created in Step 2.
+
 Click Review + Create to validate the configuration.
 Once the validation passes, click Create to deploy the virtual machine.
 </p>
@@ -81,17 +97,28 @@ Once the validation passes, click Create to deploy the virtual machine.
 </p>
 <p>
 Navigate back to Virtual Machines in the Microsoft Azure portal.
+
 Click + Create to start creating a new virtual machine.
+
 Under the Basics tab:
 For the Resource Group, select Active-Directory-Lab (the same resource group used for dc-1).
+
 Set the Virtual Machine Name to client-1.
+
 For the Image, select Windows 10 Pro.
+
 For the Size, choose any configuration with at least 2 vCPUs or higher.
+
 Set your Username and Password for accessing the virtual machine. Ensure you remember these credentials.
+
 Check the box to confirm the licensing agreement.
+
 Click Next through the subsequent configuration tabs until you reach the Networking tab.
+
 In the Networking tab:
+
 Ensure the virtual machine is connected to the virtual network Active-Directory-Vnet.
+
 Click Review + Create to validate the configuration.
 Once the validation passes, click Create to deploy the virtual machine.
 </p>
@@ -104,13 +131,21 @@ Once the validation passes, click Create to deploy the virtual machine.
 </p>
 <p>
 Navigate back to Virtual Machines in the Microsoft Azure portal.
+
 Locate and click on DC-1 to access its configuration.
+
 In the left-hand menu, select Networking.
+
 Under Network Interface, click on the green network interface link (e.g., dc-1-nic).
+
 On the Network Interface page, find and click IP Configurations from the left-hand menu.
+
 Click on ipconfig1 to edit its settings.
+
 Change the IP Allocation from Dynamic to Static.
+
 Click Save to apply the changes.
+
 By setting the private IP address to static, we ensure DC-1, acting as a server, maintains a consistent IP address. This configuration is essential because we will set Client-1 to use DC-1 as its DNS server. A static IP prevents disruptions that could occur if DC-1's IP address changes dynamically.
 </p>
 <br />
@@ -188,12 +223,19 @@ Purpose: Configuring Client-1 to use DC-1 as its DNS server allows it to resolve
 </p>
 <p>
 Navigate back to the virtual machine dashboard.
+  
 Select the checkbox next to Client-1.
+
 Click the Restart button to reboot Client-1.
+
 Once the machine has restarted, log in to Client-1 via Remote Desktop Protocol (RDP).
+
 In Client-1, retrieve the private IP address of DC-1.
+
 In the search bar of Client-1, type PowerShell and open the application.
+
 Within the PowerShell window, type ping followed by DC-1’s private IP address and press Enter.
+
 The ping request should successfully go through, confirming connectivity between Client-1 and DC-1.
 </p>
 <br />
@@ -204,10 +246,16 @@ The ping request should successfully go through, confirming connectivity between
 <img src="https://github.com/user-attachments/assets/511ab250-4d2f-4acd-8463-1d148226c681" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-In the same PowerShell window on Client-1, type the command:
+In the PowerShell window on Client-1, type the following command:
+
 ipconfig /all
+
 Press Enter to execute the command.
-Review the output, and locate the second-to-last entry listed.
+
+Review the output displayed in the PowerShell window.
+
+Locate the second-to-last entry in the output.
+
 The second-to-last entry should display the private IP address of DC-1.
 </p>
 <br />
