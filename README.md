@@ -48,11 +48,17 @@ Once the validation passes, click Create to finalize the resource group.
 </p>
 <p>
 In the Microsoft Azure portal, locate the Search bar at the top of the page and click on it.
+
 Type Virtual Networks into the search bar and select Virtual Networks from the search results.
+
 Click + Create to begin creating a new virtual network.
+
 Under the Basics tab:
+
 For the Resource Group, select Active-Directory-Lab (the resource group created in Step 1).
+
 Name the virtual network Active-Directory-Vnet. Ensure the name is typed exactly as shown for consistency.
+
 Click Review + Create to review the configuration settings.
 Once the validation passes, click Create to finalize the virtual network.
 </p>
